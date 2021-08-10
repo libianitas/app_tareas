@@ -27,4 +27,11 @@ export class TareaService {
     return this.http.delete(environment1.urlApi + 'eliminar/'+ id);
   }
 
+  public filtrarTareasEstado(estado: boolean): Observable<ITarea[]> {
+    return this.http.get<ITarea[]>(environment1.urlApi + estado);
+ }
+
+
+
+
 }

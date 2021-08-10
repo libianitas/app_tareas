@@ -2,7 +2,6 @@ package com.evaluacion.practica1.rest;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import com.evaluacion.practica1.model.Tarea;
 import com.evaluacion.practica1.service.TareaService;
@@ -42,7 +41,7 @@ public class TareaRest {
        return ResponseEntity.ok(tareaService.getAllTareas());
     }
 
-    @PutMapping("/tarea/{id}")
+   @PutMapping("/tarea/{id}")
     private Tarea updateTarea (@PathVariable Integer id,@Validated @RequestBody Tarea tarea){
        return tareaService.createTarea(tarea);
     }
@@ -54,9 +53,9 @@ public class TareaRest {
         return ResponseEntity.ok((tareaService.findById(id) != null));
     }
    
-    @GetMapping(value = "{id}")
-    private ResponseEntity<Optional<Tarea>> filtrarTarea (@PathVariable("id") Integer id){
-       return ResponseEntity.ok(tareaService.findById(id));
+    @GetMapping("{estado}")
+    private ResponseEntity<List<Tarea>> filtrarTarea (@PathVariable("estado") Boolean estado){
+       return ResponseEntity.ok(tareaService.findAllByEstado(estado));
     }
 
 }
